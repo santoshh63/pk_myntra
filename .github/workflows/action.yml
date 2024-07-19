@@ -36,3 +36,4 @@ jobs:
           docker build -t myntra-github-action .
           docker tag myntra devopswalkers/myntra-github-action:latest
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push devopswalkers/myntra-github-action:latest
