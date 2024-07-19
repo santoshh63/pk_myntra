@@ -33,6 +33,6 @@ jobs:
       - name: Docker build and push
         run: |
           # Run commands to build and push Docker images
-          docker build -t myntra-github .
-          docker tag myntra devopswalkers/myntra-github:latest
+          docker build -t myntra-github-action .
+          docker tag myntra devopswalkers/myntra-github-action:latest
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
