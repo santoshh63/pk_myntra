@@ -37,3 +37,11 @@ jobs:
           docker tag myntra devopswalkers/myntra-github-action:latest
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
           docker push devopswalkers/myntra-github-action:latest
+
+      - name: Create Kubeconfig
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+        run: echo "${KUBECONFIG}" > ~/.kube/config
+
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f k8s/
