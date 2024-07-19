@@ -13,30 +13,30 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Build and analyze with SonarQube
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # - name: Build and analyze with SonarQube
+      #   uses: sonarsource/sonarqube-scan-action@master
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-      - name: NPM Install
-        run: npm install # Add your specific npm install command
+      # - name: NPM Install
+      #   run: npm install # Add your specific npm install command
 
-      - name: Docker Login
-        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+      # - name: Docker Login
+      #   run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Docker Scout Scan
+      # # - name: Docker Scout Scan
+      # #   run: |
+      # #     docker-scout quickview fs://.
+      # #     docker-scout cves fs://.
+
+      # - name: Docker build and push
       #   run: |
-      #     docker-scout quickview fs://.
-      #     docker-scout cves fs://.
-
-      - name: Docker build and push
-        run: |
-          # Run commands to build and push Docker images
-          docker build -t myntra-github-action .
-          docker tag myntra devopswalkers/myntra-github-action:latest
-          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-          docker push devopswalkers/myntra-github-action:latest
+      #     # Run commands to build and push Docker images
+      #     docker build -t myntra-github-action .
+      #     docker tag myntra devopswalkers/myntra-github-action:latest
+      #     docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+      #     docker push devopswalkers/myntra-github-action:latest
 
       - name: Create Kubeconfig
         env:
